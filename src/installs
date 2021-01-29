@@ -1,0 +1,22 @@
+# install stuff that is needed for this pipeline
+
+## install nibabel for handling nifti data
+import subprocess
+import sys
+
+def install(package):
+    subprocess.check_call([sys.executable, "-m", "pip", "install", package])
+
+install("nibabel")
+install("sklearn")
+
+
+
+## install BROCCOLI, for fMRI preprocessing using GPU
+
+### get git processes to work
+def git(*args):
+    return subprocess.check_call(['git'] + list(args))
+
+#git("status")
+git("clone", "https://github.com/wanderine/BROCCOLI.git") # this step lasts several minutes
